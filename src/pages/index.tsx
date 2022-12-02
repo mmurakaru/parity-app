@@ -34,7 +34,7 @@ const badgeStyle = {
   borderRadius: 4,
   padding: "4px 6px",
   display: "inline-block",
-  position: "relative",
+  position: "relative" as "relative",
   top: -2,
   marginLeft: 10,
   lineHeight: 1,
@@ -66,7 +66,7 @@ export default function IndexPage({ data }: Props) {
         Parity blog
       </h1>
       <ul style={listStyles}>
-        {posts.map(({ frontmatter, id }) => (
+        {posts.map(({ frontmatter, id }: any) => (
           <li key={id} style={{ ...listItemStyles, color: frontmatter.color }}>
             <span>
               <Link to={frontmatter.slug}>{frontmatter.title}</Link>
