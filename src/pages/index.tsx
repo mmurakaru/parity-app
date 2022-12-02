@@ -66,7 +66,7 @@ export default function IndexPage({ data }: Props) {
         Parity blog
       </h1>
       <ul style={listStyles}>
-        {posts.map(({ frontmatter, id }: any) => (
+        {posts.map(({ frontmatter, id }) => (
           <li key={id} style={{ ...listItemStyles, color: frontmatter.color }}>
             <span>
               <Link to={frontmatter.slug}>{frontmatter.title}</Link>
