@@ -3,9 +3,10 @@ import React, { useContext } from "react"
 import darkmodeIcon from "../assets/darkmode-icon.svg"
 import lightmodeIcon from "../assets/lightmode-icon.svg"
 import { ThemeContext } from "../context/ThemeContext"
+import { Link } from "gatsby"
 
 const pageStyles = {
-    padding: 96,
+    padding: '50px 80px 200px',
     fontFamily: "-apple-system, Roboto, sans-serif, serif",
 }
 const headerStyles = {
@@ -16,6 +17,7 @@ const headerStyles = {
 const headingStyles = {
     margin: '0 30px 0 0',
     maxWidth: 320,
+    textDecoration: 'none'
 }
 const iconStyles = { cursor: 'pointer' }
 const logoStyles = { marginTop: 64 }
@@ -29,9 +31,14 @@ export default function Layout({ children }: Props) {
     return (
         <main style={{ ...pageStyles, backgroundColor: theme === 'light' ? "#FFFFFF" : "#CDCECD" }}>
             <header style={headerStyles}>
-                <h1 style={{ ...headingStyles, color: theme === 'light' ? "#232129" : "#FFFFFF" }}>
-                    Parity blog
-                </h1>
+                <Link
+                    to='/'
+                    style={headingStyles}
+                >
+                    <h1 style={{ color: theme === 'light' ? "#232129" : "#FFFFFF" }}>
+                        Parity blog
+                    </h1>
+                </Link>
                 <img
                     src={theme === 'light' ? darkmodeIcon : lightmodeIcon}
                     style={iconStyles}
