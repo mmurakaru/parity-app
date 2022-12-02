@@ -5,7 +5,10 @@ type ThemeCtx = {
     toggleTheme: Function
 }
 
-export const ThemeContext = createContext<ThemeCtx | null>(null);
+export const ThemeContext = createContext<ThemeCtx>({
+    theme: 'light',
+    toggleTheme: () => { },
+});
 
 type Props = {
     children: JSX.Element
