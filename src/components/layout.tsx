@@ -17,9 +17,8 @@ const headingStyles = {
     margin: '0 30px 0 0',
     maxWidth: 320,
 }
-const iconStyles = {
-    cursor: 'pointer'
-}
+const iconStyles = { cursor: 'pointer' }
+const logoStyles = { marginTop: 64 }
 
 type Props = {
     children: JSX.Element
@@ -46,6 +45,7 @@ export default function Layout({ children }: Props) {
                 layout="fixed"
                 width={24}
                 height={24}
+                style={logoStyles}
             />
         </main>
     )

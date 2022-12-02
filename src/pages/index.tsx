@@ -36,7 +36,7 @@ const badgeStyle = {
 
 interface Posts {
   frontmatter: {
-    badge?: Boolean,
+    badge?: boolean,
     color: string,
     slug: string,
     title: string,
@@ -61,7 +61,7 @@ export default function IndexPage({ data }: Props) {
         {posts.map(({ frontmatter, id }) => (
           <li key={id} style={{ ...listItemStyles, color: frontmatter.color }}>
             <span>
-              <Link to={frontmatter.slug} style={{ ...linkStyles, color: theme === 'light' ? "#232129" : "#FFFFFF" }}>{frontmatter.title}</Link>
+              <Link to={'/blog' + frontmatter.slug} style={{ ...linkStyles, color: theme === 'light' ? "#232129" : "#FFFFFF" }}>{frontmatter.title}</Link>
               {frontmatter.badge && (
                 <span style={badgeStyle} aria-label="New Badge">
                   NEW!
