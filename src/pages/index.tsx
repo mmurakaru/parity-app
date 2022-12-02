@@ -2,16 +2,25 @@ import * as React from "react"
 import { graphql, HeadFC } from "gatsby"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import darkmodeIcon from "../assets/darkmode-icon.svg"
+import lightmodeIcon from "../assets/lightmode-icon.svg"
+import { useState } from "react"
 
 const pageStyles = {
-  color: "#232129",
   padding: 96,
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
 }
+const headerStyles = {
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: 64
+}
 const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
+  margin: '0 30px 0 0',
   maxWidth: 320,
+}
+const iconStyles = {
+  cursor: 'pointer'
 }
 const listStyles = {
   marginBottom: 96,
@@ -22,6 +31,9 @@ const listItemStyles = {
   fontSize: 24,
   maxWidth: 560,
   marginBottom: 30,
+}
+const linkStyles = {
+  textDecoration: "none"
 }
 
 const badgeStyle = {
@@ -59,17 +71,26 @@ interface Props {
 }
 
 export default function IndexPage({ data }: Props) {
+  const [darkmode, setDarkmode] = useState(false)
   const posts = data.allMarkdownRemark.nodes
+
+  function handleDarkmode() {
+    setDarkmode(!darkmode)
+  }
+
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>
-        Parity blog
-      </h1>
+    <main style={{ ...pageStyles, backgroundColor: darkmode ? "#CDCECD" : "#FFFFFF" }}>
+      <header style={headerStyles}>
+        <h1 style={{ ...headingStyles, color: darkmode ? "#FFFFFF" : "#232129" }}>
+          Parity blog
+        </h1>
+        <img src={darkmode ? lightmodeIcon : darkmodeIcon} style={iconStyles} onClick={handleDarkmode} />
+      </header>
       <ul style={listStyles}>
         {posts.map(({ frontmatter, id }) => (
           <li key={id} style={{ ...listItemStyles, color: frontmatter.color }}>
             <span>
-              <Link to={frontmatter.slug}>{frontmatter.title}</Link>
+              <Link to={frontmatter.slug} style={{ ...linkStyles, color: darkmode ? "#FFFFFF" : "#232129" }}>{frontmatter.title}</Link>
               {frontmatter.badge && (
                 <span style={badgeStyle} aria-label="New Badge">
                   NEW!
