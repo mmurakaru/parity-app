@@ -1,7 +1,6 @@
 import React, { useContext } from "react"
 import { graphql, HeadFC } from "gatsby"
 import { Link } from "gatsby"
-import Layout from "../components/Layout"
 import { ThemeContext } from "../context/ThemeContext"
 
 const listStyles = {
@@ -56,22 +55,20 @@ export default function IndexPage({ data }: Props) {
   const { theme } = useContext(ThemeContext)
   const posts = data.allMarkdownRemark.nodes
   return (
-    <Layout>
-      <ul style={listStyles}>
-        {posts.map(({ frontmatter, id }) => (
-          <li key={id} style={{ ...listItemStyles, color: frontmatter.color }}>
-            <span>
-              <Link to={'/blog' + frontmatter.slug} style={{ ...linkStyles, color: theme === 'light' ? "#232129" : "#FFFFFF" }}>{frontmatter.title}</Link>
-              {frontmatter.badge && (
-                <span style={badgeStyle} aria-label="New Badge">
-                  NEW!
-                </span>
-              )}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </Layout>
+    <ul style={listStyles}>
+      {posts.map(({ frontmatter, id }) => (
+        <li key={id} style={{ ...listItemStyles, color: frontmatter.color }}>
+          <span>
+            <Link to={'/blog' + frontmatter.slug} style={{ ...linkStyles, color: theme === 'light' ? "#232129" : "#FFFFFF" }}>{frontmatter.title}</Link>
+            {frontmatter.badge && (
+              <span style={badgeStyle} aria-label="New Badge">
+                NEW!
+              </span>
+            )}
+          </span>
+        </li>
+      ))}
+    </ul>
   )
 }
 

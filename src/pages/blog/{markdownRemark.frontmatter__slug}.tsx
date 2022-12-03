@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import { graphql, HeadFC } from "gatsby"
-import Layout from "../../components/Layout"
 import { ThemeContext } from "../../context/ThemeContext"
 import { GatsbyImage } from "gatsby-plugin-image"
 
@@ -46,25 +45,23 @@ export default function BlogPostPage({ data }: Post) {
     const { markdownRemark } = data
     const { frontmatter, html, featuredImg } = markdownRemark
     return (
-        <Layout>
-            <>
-                <h1 style={{ color: theme === 'light' ? "#232129" : "#FFFFFF" }}>{frontmatter.title}</h1>
-                <h3 style={{ color: theme === 'light' ? "#232129" : "#FFFFFF" }}>{frontmatter.date}</h3>
-                {featuredImg && (
-                    <GatsbyImage
-                        // @ts-ignore
-                        image={
-                            featuredImg.childImageSharp.gatsbyImageData
-                        }
-                        alt={frontmatter.featuredImgAlt}
-                    />
-                )}
-                <div
-                    style={{ color: theme === 'light' ? "#232129" : "#FFFFFF" }}
-                    dangerouslySetInnerHTML={{ __html: html }}
+        <>
+            <h1 style={{ color: theme === 'light' ? "#232129" : "#FFFFFF" }}>{frontmatter.title}</h1>
+            <h3 style={{ color: theme === 'light' ? "#232129" : "#FFFFFF" }}>{frontmatter.date}</h3>
+            {featuredImg && (
+                <GatsbyImage
+                    // @ts-ignore
+                    image={
+                        featuredImg.childImageSharp.gatsbyImageData
+                    }
+                    alt={frontmatter.featuredImgAlt}
                 />
-            </>
-        </Layout>
+            )}
+            <div
+                style={{ color: theme === 'light' ? "#232129" : "#FFFFFF" }}
+                dangerouslySetInnerHTML={{ __html: html }}
+            />
+        </>
     )
 }
 
