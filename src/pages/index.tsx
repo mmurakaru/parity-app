@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { graphql, HeadFC } from "gatsby"
 import { Link } from "gatsby"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import { ThemeContext } from "../context/ThemeContext"
 
 const listStyles = {
@@ -91,4 +91,4 @@ query PostsQuery {
 }
 `
 
-export const Head: HeadFC = () => <title>Home Page</title>
+export const Head: HeadFC = () => <title>Blog Page</title>

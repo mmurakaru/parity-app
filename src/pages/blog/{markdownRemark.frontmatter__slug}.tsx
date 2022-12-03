@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
-import { graphql } from "gatsby"
-import Layout from "../../components/layout"
+import { graphql, HeadFC } from "gatsby"
+import Layout from "../../components/Layout"
 import { ThemeContext } from "../../context/ThemeContext"
 import { GatsbyImage } from "gatsby-plugin-image"
 
@@ -41,7 +41,7 @@ interface Post {
     }
 }
 
-export default function BlogPostTemplate({ data }: Post) {
+export default function BlogPostPage({ data }: Post) {
     const { theme } = useContext(ThemeContext)
     const { markdownRemark } = data
     const { frontmatter, html, featuredImg } = markdownRemark
@@ -86,3 +86,5 @@ query PostQuery($id: String!) {
     }
   }
 `
+
+export const Head: HeadFC = () => <title>Post Page</title>
