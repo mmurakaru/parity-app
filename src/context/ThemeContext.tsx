@@ -18,8 +18,10 @@ export default function ThemeProvider({ children }: Props) {
     const [theme, setTheme] = useState('light')
 
     useEffect(() => {
-        const theme = JSON.parse(localStorage.getItem('theme') || '')
-        setTheme(theme)
+        const theme = localStorage.getItem('theme')
+        if (theme != null) {
+            setTheme(JSON.parse(theme))
+        }
     }, [])
 
     function toggleTheme() {
